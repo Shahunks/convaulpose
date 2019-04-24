@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+  consul:
+    image: "consul:latest"
+    hostname: "consul"
+    command: consul agent -dev -client 0.0.0.0
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53/udp"
+
+  vault:
+    depends_on:
+      - consul
+    image: "vault"
+    hostname: "vault"
+    links:
+      - "consul:consul"
+    environment:
+      VAULT_ADDR: http://vault:8200
+    ports:
+      - "8200:8200"
+    volumes:
+      - ./tools/wait-for-it.sh:/wait-for-it.sh:z
+      - ./config/vault:/config:z
+      - ./config/vault/policies:/policies:z
+    entrypoint: /wait-for-it.sh -t 20 -h consul -p 8500 -s -- vault server -config=/config/with-consul.hcl
+
+  consul-template:
+    depends_on:
+      - consul
+      - vault
+    image: hashicorp/consul-template:alpine
+    container_name: "consul-template"
+    volumes:
+     - "./consul-template.hcl:/data/consul-template.hcl:ro"
+     - "./config/vault:/config/vault"
+    command: consul-template -config data/consul-template.hcl -log-level debug
+

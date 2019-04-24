@@ -1,0 +1,38 @@
+{
+	{
+    "customerDB": {
+        "mongo": {
+        				  
+            "customerDB": "<no value>/customerDB"  
+            				              
+        }
+    },
+    "pods": {
+        "pod1": {
+            "mongo": {
+            				 
+                "trackerDB": "<no value>/trackerDB",
+                			
+                "taskDB": "<no value>/taskDB",
+                		   
+                "feedDB": "<no value>/tfeedDB",
+                			
+                "userDB": "<no value>/userDB",
+                
+            }
+        },
+
+        "pod2":{
+        	"mongo":{
+        				 
+                "trackerDB": "<no value>/trackerDB",
+                			
+                "taskDB": "<no value>/taskDB",
+                		   
+                "feedDB": "<no value>/feedDB",
+                			
+                "userDB": "<no value>/userDB",
+        }
+    }
+}
+}

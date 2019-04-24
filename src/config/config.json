@@ -1,0 +1,25 @@
+{
+    "customerDB": {
+        "mongo": {
+            "customerDB": "mongodb://localhost:27100/customerDB"
+        }
+    },
+    "pods": {
+        "pod1": {
+            "mongo": {
+                "trackerDB": "mongodb://localhost:27100/trackerDB",
+                "taskDB": "mongodb://localhost:27100/taskDB",
+                "feedDB": "mongodb://localhost:27100/feedDB",
+                "userDB": "mongodb://localhost:27100/userDB"
+            }
+        },
+        "pod2": {
+            "mongo": {
+                "trackerDB": "mongodb://localhost:27100/trackerDZ",
+                "taskDB": "mongodb://localhost:27100/taskDB",
+                "feedDB": "mongodb://localhost:27100/feedDD",
+                "userDB": "mongodb://localhost:27100/userDD"
+            }
+        }
+    }
+}
