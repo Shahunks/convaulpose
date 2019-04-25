@@ -1,7 +1,6 @@
 pipeline {
-    agent any
+    agent {label 'slave'}
     stages {
-       
         stage('Build') {
             steps {
                 sh 'bash -c "docker-compose up -d"'  
